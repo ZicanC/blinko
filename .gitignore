@@ -22,3 +22,4 @@ public/sw*
 public/plugins/*
 public/workbox*.*
 seed.js
+*.yml

@@ -1,4 +1,3 @@
-# docker-compose.dev.yml
 version: '3'
 
 networks:
@@ -15,8 +14,8 @@ services:
       dockerfile: ./dockerfile
     environment:
       NODE_ENV: production
-      NEXTAUTH_URL: http://localhost:1111
-      NEXT_PUBLIC_BASE_URL: http://localhost:1111
+      NEXTAUTH_URL: http://localhost:15433
+      NEXT_PUBLIC_BASE_URL: http://localhost:15433
       NEXTAUTH_SECRET: my_ultra_secure_nextauth_secret
       DATABASE_URL: postgresql://postgres:mysecretpassword@postgres:5432/postgres
     depends_on:
@@ -24,7 +23,7 @@ services:
         condition: service_healthy
     restart: always
     ports:
-      - 1111:1111
+      - 15433:1111  # HOST:CONTAINER, use 1112 on your computer now
     healthcheck:
       test: ["CMD", "curl", "-f", "http://blinko-website:1111/"]
       interval: 30s 
@@ -39,7 +38,7 @@ services:
     container_name: blinko-postgres
     restart: always
     ports:
-      - 5432:5432
+      - 15432:5432  # Use 5433 on host machine
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
